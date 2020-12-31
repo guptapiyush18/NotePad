@@ -1,6 +1,7 @@
 # NotePad
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+A basic project for creating, editing or deleting Notes after loggin in.
+
 
 ## Development server
 
