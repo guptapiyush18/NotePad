@@ -1,5 +1,5 @@
 {
-  "name": "note-pad",
+  "name": "note-pad-heroku",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
