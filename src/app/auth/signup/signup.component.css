@@ -1,0 +1,8 @@
+ mat-form-field {
+  width: 100%;
+}
+mat-card{
+  border: 2px solid rgba(51, 28, 28, 0.521);
+  width: 500px;
+}
+

@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+mat-expansion-panel {
+    width: 700px;
+  }
+mat-panel-description {
+  color: rgb(36, 35, 35);
+}
+mat-panel-title {
+  font-weight: bold;
+}
+
+h4 {
+  font-family: "Audiowide", cursive;
+}

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="class=" col-xs-12 col-md-6 col-md-offset-3>
+      <form  [formGroup]="signUpForm" #signUpFormDirective="ngForm" (ngSubmit)=OnSignUp() >
+        <mat-card >
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input type="email" matInput placeholder="name@example.com" formControlName="email"/>
+            <mat-error>Please enter a valid Email Id</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName="password" matInput minlength="6"
+             />
+            <mat-error>Password must be atleast 6 letters</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" formControlName="confirmpassword" matInput minlength="6" />
+            <mat-error >Both passwords must be same</mat-error>
+          </mat-form-field>
+          <div class="text-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
