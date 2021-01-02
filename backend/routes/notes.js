@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Note = require("../model/note");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-mongoose.connect("mongodb+srv://admin:asdasdasd@angularnode.ovhei.mongodb.net/notesDB?retryWrites=true&w=majority").then(() => {
-  console.log("Connected to database!");
-})
-  .catch(() => {
-    console.log("Connection failed!");
-  });
+
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
