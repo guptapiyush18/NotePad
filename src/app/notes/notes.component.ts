@@ -14,20 +14,21 @@ export class NotesComponent {
     private authService: AuthService
   ) {}
   links = ['Create', 'List'];
-  activeLink = this.links[1];
+  activeLink = this.links[0];
   isAuth: boolean = false;
   subscription: Subscription;
 
   setRoute(link) {
     this.activeLink = link;
     if (link === 'Create') this.route.navigate(['/notes/create']);
-    else this.route.navigate(['/notes/list']);
+    else if(link === 'List'){this.route.navigate(['/notes/list']);}
   }
   ngOnInit() {
     this.isAuth = this.authService.getAuth();
     this.subscription = this.authService.isAuthUpdate.subscribe(
       (value) => (this.isAuth = value)
     );
+    this.setRoute(this.activeLink)
   }
 
   ngOnDestroy() {

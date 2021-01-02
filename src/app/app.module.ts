@@ -21,12 +21,14 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { ListNotesComponent } from './notes/list-notes/list-notes.component';
 import { NotesComponent } from './notes/notes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, SignupComponent, CreateNoteComponent, ListNotesComponent, NotesComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

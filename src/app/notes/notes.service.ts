@@ -1,24 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Note } from './model/note.model';
-
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class NotesService {
-  private note: Note[] = [
-    {
-      title: 'First Title',
-      description: 'Example Discription 1 for checking expansion',
-    },
-    {
-      title: 'Second Title',
-      description: 'Example Discription 2 for checking expansion',
-    },
-  ];
+  constructor(private http: HttpClient) {}
+  private note: Note[];
+  private notesUpdated = new Subject<Note[]>();
 
   getNotes() {
-    return this.note.slice();
-  }
+    this.http
+      .get<{ notes: any }>('http://localhost:8080/api/notes')
+      .pipe(
+        map((noteData) => {
+          return noteData.notes.map((note) => {
+            return {
+              title: note.title,
+              description: note.description,
+              id: note._id,
+            };
+          });
+        })
+      )
 
-  addNote(note: Note) {
-    this.note.push(note);
+      .subscribe((data) => {
+        this.note = data;
+        this.notesUpdated.next([...this.note]);
+      });
+  }
+  getNoteUpdateListener() {
+    return this.notesUpdated.asObservable();
+  }
+  addNote(title, desc) {
+    this.http.post<{messageL: string, note: any}>('http://localhost:8080/api/notes', {title: title, description: desc}).subscribe(
+      (data) => {
+        console.log(data);
+        this.note.push({
+          id: data.note._id,
+          title: data.note.title,
+          description: data.note.descriptions
+        })
+        this.notesUpdated.next([...this.note]);
+      }
+    )
   }
 }

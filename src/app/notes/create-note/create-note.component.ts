@@ -23,11 +23,11 @@ export class CreateNoteComponent implements OnInit {
     });
   }
   onCreateNote() {
-    const note: Note = {
-      title: this.createForm.value.title,
-      description: this.createForm.value.description,
-    };
-    this.noteService.addNote(note);
+
+    this.noteService.addNote(
+      this.createForm.value.title,
+      this.createForm.value.description
+    );
 
     this.snackBar.open('Note Created !!', 'X');
     this.createForm.reset();

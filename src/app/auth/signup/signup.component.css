@@ -1,4 +1,10 @@
- mat-form-field {
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+h4 {
+  font-family: "Audiowide", cursive;
+}
+
+mat-form-field {
   width: 100%;
 }
 mat-card{

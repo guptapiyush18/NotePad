@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Post = require("../model/note");
+const Note = require("../model/note");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 mongoose.connect("mongodb+srv://admin:asdasdasd@angularnode.ovhei.mongodb.net/notesDB?retryWrites=true&w=majority").then(() => {
@@ -26,22 +26,23 @@ router.use((req, res, next) => {
 });
 
 router.post("", (req, res, next) => {
-  const post = new Post({
+  const note = new Note({
     title: req.body.title,
     description: req.body.description
   })
-  post.save().then(createdPost => {
+  note.save().then(createdPost => {
     console.log(createdPost);
     res.status(201).json({
-      message: 'Update successfull'
+      message: 'Update successfull',
+      note: createdPost
     })
   })
 });
 
 router.get("", (req, res, next) => {
-  Post.find().then(documents => {
+  Note.find().then(documents => {
     res.status(200).json({
-      posts: documents
+      notes: documents
     })
   })
 
