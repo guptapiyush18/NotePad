@@ -1,10 +1,4 @@
 <app-header></app-header>
-<nav mat-tab-nav-bar  mat-align-tabs="center" backgroundColor="primary" *ngIf="isAuth">
-  <a mat-tab-link *ngFor="let link of links"
-     (click)="setRoute(link)"
-     [active]="activeLink == link"> {{link}} </a>
-</nav>
 <main>
   <router-outlet></router-outlet>
-
 </main>

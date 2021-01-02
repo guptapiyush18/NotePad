@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { ListNotesComponent } from './notes/list-notes/list-notes.component';
+import { NotesComponent } from './notes/notes.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'notes/list' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: 'notes',
     canActivate: [AuthGuard],
+    component: NotesComponent,
     children: [
       { path: 'create', component: CreateNoteComponent },
       { path: 'list', component: ListNotesComponent },

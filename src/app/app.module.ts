@@ -20,10 +20,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { ListNotesComponent } from './notes/list-notes/list-notes.component';
+import { NotesComponent } from './notes/notes.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, SignupComponent, CreateNoteComponent, ListNotesComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, SignupComponent, CreateNoteComponent, ListNotesComponent, NotesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
