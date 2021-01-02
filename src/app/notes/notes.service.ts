@@ -40,11 +40,16 @@ export class NotesService {
       )
       .subscribe((data) => {
         console.log(data);
-        this.note.push({
+        this.note.unshift({
           id: data.note._id,
           title: data.note.title,
           description: data.note.descriptions,
         });
+        // this.note.push({
+        //   id: data.note._id,
+        //   title: data.note.title,
+        //   description: data.note.descriptions,
+        // });
         this.notesUpdated.next([...this.note]);
       });
   }

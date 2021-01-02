@@ -8,7 +8,7 @@ import { NotesService } from '../notes.service';
   templateUrl: './list-notes.component.html',
   styleUrls: ['./list-notes.component.css'],
 })
-export class ListNotesComponent implements OnInit {
+export class ListNotesComponent implements OnInit, OnDestroy {
   notes: Note[];
   subscription: Subscription;
   isLoading = false;
@@ -16,10 +16,14 @@ export class ListNotesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.noteService.getNotes();
-    this.noteService.getNoteUpdateListener().subscribe((data) => {
+    this.subscription =  this.noteService.getNoteUpdateListener().subscribe((data) => {
       this.isLoading = false;
       this.notes = data;
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
