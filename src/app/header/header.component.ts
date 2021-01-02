@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -7,12 +8,13 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
   constructor(private authService: AuthService,private route: Router) {}
   isLoggedIn: boolean;
+  subscription: Subscription;
   ngOnInit(): void {
     this.isLoggedIn = this.authService.getAuth();
-    this.authService.isAuthUpdate.subscribe(
+    this.subscription= this.authService.isAuthUpdate.subscribe(
       (value) => (this.isLoggedIn = value)
     );
   }
@@ -20,5 +22,8 @@ export class HeaderComponent implements OnInit {
 
       this.authService.setAuth(false);
       this.route.navigate(['/login']);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
