@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Note } from '../model/note.model';
 import { NotesService } from '../notes.service';
@@ -12,18 +13,25 @@ export class ListNotesComponent implements OnInit, OnDestroy {
   notes: Note[];
   subscription: Subscription;
   isLoading = false;
-  constructor(private noteService: NotesService) {}
+  constructor(private noteService: NotesService, private MatSnackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.isLoading = true;
     this.noteService.getNotes();
-    this.subscription =  this.noteService.getNoteUpdateListener().subscribe((data) => {
-      this.isLoading = false;
-      this.notes = data;
-    });
+    this.subscription = this.noteService
+      .getNoteUpdateListener()
+      .subscribe((data) => {
+        this.isLoading = false;
+        this.notes = data;
+      });
+  }
+
+  onDelete(note: Note) {
+    this.noteService.deleteNote(note);
+    this.MatSnackBar.open('Note Deleted.👍', 'X')
+
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

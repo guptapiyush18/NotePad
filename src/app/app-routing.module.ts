@@ -19,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: 'create', component: CreateNoteComponent },
       { path: 'list', component: ListNotesComponent },
+      { path: 'edit', component: CreateNoteComponent },
     ],
   },
   { path: '**', redirectTo: 'notes/list' },

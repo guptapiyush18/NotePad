@@ -40,12 +40,42 @@ router.post("", (req, res, next) => {
 });
 
 router.get("", (req, res, next) => {
-  Note.find().then(documents => {
+  if (req.query.id) {
+    Note.findOne({ _id: req.query.id }).then((document => {
+      res.status(200).json({
+        note: document
+      })
+    }))
+  }
+  else {
+    Note.find().then(documents => {
     res.status(200).json({
       notes: documents
     })
-  })
+  })}
 
+})
+
+router.put("", (req, res, next) => {
+  if (req.query.id) {
+    const note = new Note({
+      _id: req.body.id,
+      title: req.body.title,
+      description: req.body.description
+    });
+    Note.updateOne({ _id: req.query.id }, note).then((data) => {
+      res.status(200).json({ "message": "Post Updated" });
+    })
+}
+})
+
+router.delete("", (req, res, next) => {
+  const id = req.query.id;
+  Note.deleteOne({ _id: id }).then(result => {
+    res.status(200).json({
+      message: 'Post Deleted Successfully'
+    })
+  })
 })
 
 

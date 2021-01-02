@@ -12,10 +12,10 @@
               {{ note.description }}
             </mat-panel-description>
             <div class="text-right">
-              <button mat-flat-button color="primary" style="margin-right: 5px">
+              <a mat-flat-button color="primary" [routerLink]="['/notes/edit']" [queryParams]="{id: note.id}" style="margin-right: 5px;">
                 EDIT
-              </button>
-              <button mat-flat-button color="warn">X</button>
+              </a>
+              <button mat-flat-button color="warn" (click)="onDelete(note)" >X</button>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
