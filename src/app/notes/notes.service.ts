@@ -11,7 +11,7 @@ export class NotesService {
 
   getNotes() {
     this.http
-      .get<{ notes: any }>('http://localhost:8080/api/notes')
+      .get<{ notes: any }>('https://note-pad-heroku.herokuapp.com/api/notes')
       .pipe(
         map((noteData) => {
           return noteData.notes.map((note) => {
@@ -33,16 +33,19 @@ export class NotesService {
     return this.notesUpdated.asObservable();
   }
   addNote(title, desc) {
-    this.http.post<{messageL: string, note: any}>('http://localhost:8080/api/notes', {title: title, description: desc}).subscribe(
-      (data) => {
+    this.http
+      .post<{ messageL: string; note: any }>(
+        'https://note-pad-heroku.herokuapp.com/api/notes',
+        { title: title, description: desc }
+      )
+      .subscribe((data) => {
         console.log(data);
         this.note.push({
           id: data.note._id,
           title: data.note.title,
-          description: data.note.descriptions
-        })
+          description: data.note.descriptions,
+        });
         this.notesUpdated.next([...this.note]);
-      }
-    )
+      });
   }
 }
