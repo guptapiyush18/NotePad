@@ -1,0 +1,16 @@
+<nav
+  mat-tab-nav-bar style="width: 700px;"
+  mat-align-tabs="center"
+  backgroundColor="primary"
+  *ngIf="isAuth"
+>
+  <a
+    mat-tab-link
+    *ngFor="let link of links"
+    (click)="setRoute(link)"
+    [active]="activeLink == link"
+  >
+    {{ link }}
+  </a>
+</nav>
+<router-outlet></router-outlet>
