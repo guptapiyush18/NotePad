@@ -47,6 +47,7 @@ export class AuthService {
           }
         },
         (error) => {
+          console.log(error);
           this.setAuth(false);
         }
       );
