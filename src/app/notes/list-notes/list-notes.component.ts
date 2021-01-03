@@ -27,7 +27,9 @@ export class ListNotesComponent implements OnInit, OnDestroy {
 
   onDelete(note: Note) {
     this.noteService.deleteNote(note);
-    this.MatSnackBar.open('Note Deleted.👍', 'X')
+    this.MatSnackBar.open('Note Deleted.👍', 'X', {
+      duration: 1500
+    })
 
   }
 

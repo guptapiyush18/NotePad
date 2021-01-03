@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   onLogin(form: NgForm) {
-    this.authService.setAuth(true);
-    this.route.navigate(['/']);
+    this.authService
+      .login(form.value.email, form.value.password)
+
   }
 }
