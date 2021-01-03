@@ -21,7 +21,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { CreateNoteComponent } from './notes/create-note/create-note.component';
 import { ListNotesComponent } from './notes/list-notes/list-notes.component';
 import { NotesComponent } from './notes/notes.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

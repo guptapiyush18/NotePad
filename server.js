@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const authRoutes = require('./backend/routes/notes');
+const authRoutes = require('./backend/routes/users');
 const noteRoutes = require('./backend/routes/notes');
 
-mongoose.connect("mongodb+srv://admin:asdasdasd@angularnode.ovhei.mongodb.net/notesDB?retryWrites=true&w=majority").then(() => {
+mongoose.connect("mongodb+srv://admin:asdasdasd@angularnode.ovhei.mongodb.net/notesDB?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true }).then(() => {
   console.log("Connected to database!");
 })
   .catch(() => {

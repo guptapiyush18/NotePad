@@ -43,12 +43,13 @@ export class NotesService {
   addNote(title: string, desc: string) {
     this.http
       .post<{ message: string; note: any }>(`${environment.apiUrl}/notes`, {
+        userId: localStorage.getItem('userId'),
         title: title,
         description: desc,
       })
       .subscribe((data) => {
         console.log(data);
-        this.note.unshift({
+        this.note.push({
           id: data.note._id,
           title: data.note.title,
           description: data.note.descriptions,
@@ -62,6 +63,7 @@ export class NotesService {
       .put<{ message: string }>(
         `${environment.apiUrl}/notes`,
         {
+          userId: localStorage.getItem('userId'),
           id: id,
           title: title,
           description: description,

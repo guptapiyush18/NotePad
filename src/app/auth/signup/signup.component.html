@@ -4,21 +4,28 @@
       <form  [formGroup]="signUpForm" #signUpFormDirective="ngForm" (ngSubmit)=OnSignUp() >
         <mat-card >
           <h4>Signup</h4>
+           <mat-form-field appearance="outline">
+            <mat-label>User Id</mat-label>
+            <input type="text" matInput placeholder="piyush18" formControlName="userId"/>
+            <mat-hint>Atleast 6 letters are required without any whitespace.</mat-hint>
+            <mat-error>Please enter a valid UserId</mat-error>
+          </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Email Address</mat-label>
             <input type="email" matInput placeholder="name@example.com" formControlName="email"/>
             <mat-error>Please enter a valid Email Id</mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" >
             <mat-label>Password</mat-label>
-            <input type="password" formControlName="password" matInput minlength="6"
+            <input type="password" formControlName="password" matInput
              />
-            <mat-error>Password must be atleast 6 letters</mat-error>
+            <mat-hint>Password must be atleast 6 letters</mat-hint>
+            <mat-error>Please enter valid Password</mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input type="password" formControlName="confirmpassword" matInput minlength="6" />
-            <mat-error >Both passwords must be same</mat-error>
+            <input type="password" formControlName="confirmpassword" matInput />
+            <mat-error *ngIf="signUpForm.invalid">Both passwords must be same</mat-error>
           </mat-form-field>
           <div class="text-center">
           <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
