@@ -30,7 +30,7 @@ exports.userLogin = (req, res, next) => {
     }).then((result) => {
       if (!result) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication credentials!"
         });
       }
       const token = jwt.sign({ emailId: this.fetchUser.emailId, userId: this.fetchUser.userId },"JinGaLalaHuAuhu",{expiresIn: '1h'});
@@ -41,7 +41,7 @@ exports.userLogin = (req, res, next) => {
       });
     }).catch(err => {
       return res.status(401).json({
-        message: "Invalid authentication credentials!"
+        message: "Internal Server Error"
       });
     });
 }
