@@ -50,7 +50,6 @@ export class NotesService {
         description: desc,
       })
       .subscribe((data) => {
-        console.log(data);
         this.note.push({
           id: data.note._id,
           title: data.note.title,

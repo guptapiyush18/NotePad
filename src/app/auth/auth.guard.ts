@@ -7,7 +7,6 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService,private route: Router) { }
   canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot) {
     if (!this.authService.getAuth()) {
-    console.log(this.authService.getAuth());
 
       return this.route.createUrlTree(['/login'])
     }

@@ -8,7 +8,6 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
@@ -18,7 +17,6 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
   constructor(
-    private snackBar: MatSnackBar,
     private route: Router,
     private authService: AuthService
   ) {}
@@ -62,12 +60,13 @@ export class SignupComponent implements OnInit {
   };
 
   OnSignUp() {
-    this.authService.signUp(this.signUpForm.value.userId,this.signUpForm.value.email,this.signUpForm.value.password);
+    this.authService.signUp(
+      this.signUpForm.value.userId,
+      this.signUpForm.value.email,
+      this.signUpForm.value.password
+    );
     this.signUpForm.reset();
     this.sForm.resetForm();
-    this.route.navigate(['/']);
-    this.snackBar.open('User Signed Up Successfully. Please Login', 'X', {
-      duration: 2000,
-    });
+
   }
 }

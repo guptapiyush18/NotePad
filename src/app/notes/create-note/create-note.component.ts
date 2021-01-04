@@ -33,7 +33,6 @@ export class CreateNoteComponent implements OnInit {
       this.mode = 'edit';
       this.noteId = url.split('?')[1].split('=')[1];
       this.noteService.getNote(this.noteId).subscribe((data) => {
-        console.log(data);
         this.note = {
           id: data.note._id,
           title: data.note.title,
