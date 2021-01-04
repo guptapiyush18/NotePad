@@ -35,8 +35,10 @@ export class NotesService {
       .subscribe((data) => {
         this.note = data;
         this.notesUpdated.next([...this.note]);
+
       });
   }
+
   getNoteUpdateListener() {
     return this.notesUpdated.asObservable();
   }

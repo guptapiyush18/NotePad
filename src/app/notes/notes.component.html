@@ -1,5 +1,6 @@
 <nav
-  mat-tab-nav-bar style="width: 700px;"
+  mat-tab-nav-bar
+  style="width: 700px"
   mat-align-tabs="center"
   backgroundColor="primary"
   *ngIf="isAuth"
@@ -10,7 +11,15 @@
     (click)="setRoute(link)"
     [active]="activeLink == link"
   >
-    {{ link }}
+    <div
+      [matBadge]="listCount"
+      [matBadgeHidden]="link === 'Create'"
+      matBadgeOverlap="false"
+      matBadgePosition="after"
+      matBadgeColor="primary"
+    >
+      {{ link }}
+    </div>
   </a>
 </nav>
 <router-outlet></router-outlet>

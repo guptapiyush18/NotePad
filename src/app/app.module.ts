@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -33,6 +34,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatBadgeModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
