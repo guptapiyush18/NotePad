@@ -1,11 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient, private route: Router) {}
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    private route: Router
+  ) {}
 
   private isAuthenticated: boolean = false;
   isAuthUpdate = new Subject<boolean>();
@@ -47,7 +53,6 @@ export class AuthService {
           }
         },
         (error) => {
-          console.log(error);
           this.setAuth(false);
         }
       );
@@ -77,8 +82,11 @@ export class AuthService {
         password: password,
       })
       .subscribe((data) => {
-        console.log(data);
-        this.setAuth(true);
+        this.setAuth(false);
+        this.snackBar.open('User Signed Up Successfully. Please Login', 'X', {
+          duration: 2000,
+        });
+        this.route.navigate(['/']);
       });
   }
 
