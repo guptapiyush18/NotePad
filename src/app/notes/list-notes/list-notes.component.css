@@ -17,6 +17,8 @@ mat-panel-title {
 
 h4 {
   font-family: "Audiowide", cursive;
+  text-align: center;
+
 }
 a:hover{
   text-decoration: none;
