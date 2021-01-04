@@ -5,9 +5,10 @@ mat-form-field {
 }
 mat-card {
   border: 2px solid rgba(51, 28, 28, 0.521);
-  width: 700px;
+  width: auto;;
 }
 
 h4 {
   font-family: "Audiowide", cursive;
+  text-align: center;
 }
