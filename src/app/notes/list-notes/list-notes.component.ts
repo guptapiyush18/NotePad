@@ -12,8 +12,12 @@ import { NotesService } from '../notes.service';
 export class ListNotesComponent implements OnInit, OnDestroy {
   notes: Note[];
   subscription: Subscription;
+  isEmpty = false;
   isLoading = false;
-  constructor(private noteService: NotesService, private MatSnackBar: MatSnackBar) {}
+  constructor(
+    private noteService: NotesService,
+    private MatSnackBar: MatSnackBar
+  ) {}
   ngOnInit(): void {
     this.isLoading = true;
     this.noteService.getNotes();
@@ -22,15 +26,16 @@ export class ListNotesComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.isLoading = false;
         this.notes = data;
+        if (this.notes.length === 0)
+          this.isEmpty = true;
       });
   }
 
   onDelete(note: Note) {
     this.noteService.deleteNote(note);
     this.MatSnackBar.open('Note Deleted.👍', 'X', {
-      duration: 1500
-    })
-
+      duration: 1500,
+    });
   }
 
   ngOnDestroy() {
